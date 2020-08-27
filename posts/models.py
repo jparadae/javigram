@@ -5,7 +5,7 @@ from django.db import models
 
 #Utilidades
 
-class User(models.Model):
+"""class User(models.Model):
     """Creando Modelo Usuario"""
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=100)
@@ -19,5 +19,5 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now=True) #C/vez que se modifica añade la fecha actual
 
     #Modificando la tabla para saber si el usuario es admin, por default no
-    es_admin = models.BooleanField(default=False) 
+    es_admin = models.BooleanField(default=False) """
 
