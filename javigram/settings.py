@@ -79,8 +79,14 @@ WSGI_APPLICATION = 'javigram.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+     #   'ENGINE': 'django.db.backends.sqlite3',
+      #  'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'javigram',
+        'USER': 'root',
+        'PASSWORD': 'jparada1',
+        'HOST': '172.17.0.2',
+        'PORT': '3306',
     }
 }
 
