@@ -1,11 +1,38 @@
 <html>
+<head>
     <title>Posts</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> 
+</head>    
     <body>
-        {% for post in posts %}
-        <p> {{ post.titulo }}</p><br>
-        <p> {{ post.usuario }}</p><br>
-        <p> {{ post.timestap }}</p>
-        {% endfor %}        
+    <br>
+      <div class="container">
+       
+         {% for post in posts %}
+         
+
+ <div class="row justify-content-center">
+       <div class="col-6 align-self-center">
+         <div class="media">
+           <img src="{{ post.usuario.avatar }}" class="mr-3 rounded-circle" style="width: 100px; height: 90px; margin: 0px;">
+             <div class="media-body">
+              <h6 class="mt-0"><b>{{ post.usuario.nombre }}</b></h6>
+              <label>{{ post.timestap }}</label>
+             </div>
+        </div>
+      </div>
+</div><br>
+
+
+    <div class="row justify-content-center">
+       <div class="col-6 align-self-center">
+         <img src="{{ post.imagen_publicada }}" style="width: 435px; height: 287.97px; margin: 0px;"/><br><br>
+         <strong>{{ post.titulo }}</strong>
+       </div>
+    </div>
+    
+{% endfor %} 
+
+      
+
        </body>
 </html>
