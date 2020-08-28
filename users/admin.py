@@ -18,9 +18,32 @@ class ProfileAdmin(admin.ModelAdmin):
     al elemento.
     search_field= busca entre el modelo usuario que extiende del auth de django
     list_filter = proporciona un filtro al modelo registrado 
+    fieldset = dispone los campos a mostrar en el admin de perfilusuario segun la doc de django
     """
-    list_display = ('pk','usuario', 'website')
+    list_display = ('pk','usuario', 'website', 'img_perfil')
     list_links_display = ('usuario')
     list_editable =('usuario','website')
     search_fields = ('usuario__first_name', 'usuario__last_name', 'usuario__username')
     list_filter = ('created_at', 'updated_at')
+
+    fieldsets = (
+        (
+            ("Perfil Usuario", {
+                'fields':(('usuario','img_perfil')),
+               
+                
+            }),
+
+            ("Información Adicional", {
+                'fields':(('website', 'telefono','biografia'),)
+                
+            }),
+
+            ("Metadata", {
+                'fields':(('created_at', 'updated_at'),)
+                
+            }),
+       )
+    )
+
+    readonly_fields = ('created_at', 'updated_at')
