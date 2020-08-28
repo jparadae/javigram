@@ -6,7 +6,7 @@ from django.db import models
 #Utilidades
 
 """class User(models.Model):
-    """Creando Modelo Usuario"""
+    Creando Modelo Usuario
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=100)
 
