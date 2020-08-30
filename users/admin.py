@@ -22,7 +22,7 @@ class ProfileAdmin(admin.ModelAdmin):
     """
     list_display = ('pk','usuario', 'website', 'img_perfil')
     list_links_display = ('usuario')
-    list_editable =('usuario','website')
+    list_editable =('usuario','website', 'img_perfil')
     search_fields = ('usuario__first_name', 'usuario__last_name', 'usuario__username')
     list_filter = ('created_at', 'updated_at')
 

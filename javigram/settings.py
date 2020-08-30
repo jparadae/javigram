@@ -59,7 +59,9 @@ ROOT_URLCONF = 'javigram.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,5 +131,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = BASE_DIR , 'static'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
+#Creo el folder de media para almacenar las imagenes subidas por el user
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
