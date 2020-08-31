@@ -17,7 +17,7 @@ urlpatterns = [
    path('saludo/<str:nombre>/<int:edad>/', local_views.saludo),
 
    #path de posts
-   path('posts/', views_post.list_posts),
+   path('posts/', views_post.list_posts, name='feed'),
    #Paths de users
-   #path('users/', views_user.list_users)
+   path('users/login/', views_user.login_views, name='login')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

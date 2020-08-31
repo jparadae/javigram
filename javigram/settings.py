@@ -141,3 +141,4 @@ STATICFILES_FINDERS = [
 #Creo el folder de media para almacenar las imagenes subidas por el user
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+LOGIN_URL = '/users/login/'
