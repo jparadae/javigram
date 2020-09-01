@@ -25,6 +25,10 @@ def login_views(request):
 
     return render(request, 'users/login.html') 
 
+def register_views(request):
+    """Función que registra a un usuario en Javigram"""
+    return render(request, 'users/signup.html')    
+
 @login_required
 def logout_views(request):
     logout(request)
