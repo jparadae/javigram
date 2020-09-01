@@ -10,14 +10,14 @@
         <div class="col-lg-4 offset-lg-4">
             <div class="media">
                 <img class="mr-3 rounded-circle" src="{{ post.usuario.avatar }}" alt="{{ ost.usuario.nombre }}" style="width: 100px; height: 90px; margin: 0px;">
-                <div class="media-body">
+                <div class="media-body"><br><p>
                     <h5 class="mt-0">{{ post.usuario.nombre }}</h5>
                     {{ post.timestap }}
                 </div>
             </div>
             <img class="img-fluid mt-3 border rounded" src="{{ post.imagen_publicada }}" alt="{{ post.titulo }}">
             <h6 class="ml-1 mt-1">{{ post.titulo }}</h6>
-        </div><p>
+        </div>
         {% endfor %}
     </div>
 {% endblock %}

@@ -2,7 +2,8 @@
 
 #Django
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout 
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def login_views(request):
@@ -23,3 +24,8 @@ def login_views(request):
          # No backend authenticated the credentials
 
     return render(request, 'users/login.html') 
+
+@login_required
+def logout_views(request):
+    logout(request)
+    return render(request, 'users/login.html')
