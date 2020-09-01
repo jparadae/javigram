@@ -13,9 +13,10 @@ def login_views(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password) 
+        print(username, password, request)
         if user:
-            login(request,user)
-            redirect('feed')
+            login(request, user)
+            return redirect('feed')
          # A backend authenticated the credentials
         else:
             return render(request, 'users/login.html', {'error': 'Credenciales de usuario invalidas'})

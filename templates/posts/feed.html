@@ -5,19 +5,19 @@
 {% endblock %}
 
 {% block container %}
-    <div class="row justify-content-center">
+    <div class="row">
         {% for post in posts %}
-        <div class="col-6 align-self-center">
+        <div class="col-lg-4 offset-lg-4">
             <div class="media">
-                <img  src="{{ post.usuario.avatar }}"  alt="{{ post.usuario.nombre }}" class="mr-3 rounded-circle" style="width: 100px; height: 90px; margin: 0px;">
+                <img class="mr-3 rounded-circle" src="{{ post.usuario.avatar }}" alt="{{ ost.usuario.nombre }}" style="width: 100px; height: 90px; margin: 0px;">
                 <div class="media-body">
                     <h5 class="mt-0">{{ post.usuario.nombre }}</h5>
-                    {{ post.timestamp }}
+                    {{ post.timestap }}
                 </div>
             </div>
-            <img class="img-fluid mt-3 border rounded" src="{{ post.imagen_publicada }}" alt="{{ post.titulo }}" style="width: 435px; height: 287.97px; margin: 0px;">
+            <img class="img-fluid mt-3 border rounded" src="{{ post.imagen_publicada }}" alt="{{ post.titulo }}">
             <h6 class="ml-1 mt-1">{{ post.titulo }}</h6>
-        </div>
+        </div><p>
         {% endfor %}
     </div>
 {% endblock %}
