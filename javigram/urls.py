@@ -22,7 +22,7 @@ urlpatterns = [
    #Paths de users
    path('users/login/', views_user.login_views, name='login'),
    path('users/logout/', views_user.logout_views, name='logout'),
-   path('users/sigunp/', views_user.register_views, name='sigunp'),
+   path('users/signup/', views_user.register_views, name='signup'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

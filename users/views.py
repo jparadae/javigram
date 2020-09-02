@@ -2,9 +2,12 @@
 
 #Django
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout 
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from users.models import UserProfile
+from django.contrib.auth.models import User
 
+from django.db.utils import IntegrityError
 # Create your views here.
 def login_views(request):
     """
@@ -27,6 +30,26 @@ def login_views(request):
 
 def register_views(request):
     """Función que registra a un usuario en Javigram"""
+    if request.method == 'POST':
+        username = request.POST['usuario']
+        password = request.POST['password']
+        password_confirmation = request.POST['confirma_password']
+        print(username, password, password_confirmation)
+        if password != password_confirmation:
+            return render(request,'users/signup.html', {'error':'Las constraseñas no coinciden'})
+        try:
+            user = User.objects.create_user(username=username, password=password)  
+        except IntegrityError: 
+            return render(request, 'users/signup.html', {'error': 'El nombre de usuario ya existe, intente otro por favor'})    
+
+        user.nombre = request.POST['nombre']
+        user.apellido = request.POST['apellido']
+        user.email = request.POST['email']
+        user.save()
+
+        perfil_usr = UserProfile(usuario=user) 
+        perfil_usr.save()
+        return redirect('login')  
     return render(request, 'users/signup.html')    
 
 @login_required

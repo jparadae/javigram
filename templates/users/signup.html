@@ -5,14 +5,18 @@
 {% endblock%}
 
 {% block container %}
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+     {{ error }}
+     </div>
+    {% endif%}
 
 
-
-    <form method="POST" action="{% url 'sigunp' %}">
+    <form method="POST" action="{% url 'signup' %}">
         {% csrf_token %}
         
      <div class="form-group">
-      <input type="text" class="form-control" id="usuario" placeholder="Usuario" name="username"><br>
+      <input type="text" class="form-control" id="usuario" placeholder="Usuario" name="usuario"><br>
       <input type="password" class="form-control" id="password"  placeholder="Password" name="password"><br>
       <input type="password" class="form-control" id="confirma_password"  placeholder="Confirma Password" name="confirma_password"><br>
       <input type="text" class="form-control" id="nombre"  placeholder="Nombre" name="nombre"><br>
