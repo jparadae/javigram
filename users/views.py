@@ -52,6 +52,10 @@ def register_views(request):
         return redirect('login')  
     return render(request, 'users/signup.html')    
 
+def edit_views(request):
+    
+    return render(request, 'users/edit_profile.html')
+
 @login_required
 def logout_views(request):
     logout(request)

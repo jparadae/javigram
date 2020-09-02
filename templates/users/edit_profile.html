@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+<title>@{{ request.user.username}} | Editar Perfil</title>
+{% endblock %}
+
+{% block container %}
+<p><br>
+    <div class="row"><p><br>
+     <h1>Bienvenido @{{ request.user.username}} </h1>
+    </div>
+{% endblock %}
