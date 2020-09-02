@@ -17,10 +17,10 @@ class ProfileUserCompleteMiddleware:
         """
         1. Valido que un usuario no este ingresando como anonimo
         """    
-        """if not request.user.is_anonymous:
-            perfil_usr = request.user.usuario
+        if not request.user.is_anonymous:
+            perfil_usr = request.user.perfil_usr
             if not perfil_usr.img_profile or not perfil_usr.biografia:
-                return redirect('edit_profile')"""
+                return redirect('edit_profile')
         response = self.get_response(request)
         return response
 
