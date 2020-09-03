@@ -24,10 +24,11 @@ class ProfileUserCompleteMiddleware:
                 return redirect('edit_profile')
             else:
                 print('si tiene, entonces ')"""
-            perfil = request.user.userprofile
-            if not perfil.img_perfil or not perfil.biografia:
-                if request.path not in [reverse('edit_profile'), reverse('logout')]:
-                    return redirect('edit_profile')
+            if not request.user.is_staff:    
+                perfil = request.user.userprofile
+                if not perfil.img_perfil or not perfil.biografia:
+                    if request.path not in [reverse('edit_profile'), reverse('logout')]:
+                        return redirect('edit_profile')
         response = self.get_response(request)
         return response
 
