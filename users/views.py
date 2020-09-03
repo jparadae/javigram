@@ -4,10 +4,17 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+
+#Modelds
 from users.models import UserProfile
 from django.contrib.auth.models import User
 
+#Exception
 from django.db.utils import IntegrityError
+
+#Forms
+from users.forms import PerfilForms
+
 # Create your views here.
 def login_views(request):
     """
@@ -53,8 +60,22 @@ def register_views(request):
     return render(request, 'users/signup.html')    
 
 def edit_views(request):
-    
-    return render(request, 'users/edit_profile.html')
+    """vista para editar los perfiles de usuarios incompletos, utilizando los forms de django
+     
+    """
+    """if request.method == 'POST':
+        form = PerfilForms(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+        else:
+            form = PerfilForm()    """
+
+    perfil = request.user.userprofile
+    return render(request, 'users/edit_profile.html', 
+    context={
+     'perfil': perfil,
+     'user' : request.user,
+    })
 
 @login_required
 def logout_views(request):
