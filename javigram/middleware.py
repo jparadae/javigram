@@ -1,6 +1,7 @@
 """Middleware para un usuario que no tiene completos los datos del perfil de usuario como img_profile y bio"""
 #Django
 from django.shortcuts import redirect
+from django.urls import reverse
 
 class ProfileUserCompleteMiddleware:
     """Si un usuario no tiene completo los datos del perfil es redirigido a users/edit/profile para
@@ -18,9 +19,15 @@ class ProfileUserCompleteMiddleware:
         1. Valido que un usuario no este ingresando como anonimo
         """    
         if not request.user.is_anonymous:
-            perfil_usr = request.user.perfil_usr
-            if not perfil_usr.img_profile or not perfil_usr.biografia:
+            """if not request.user.userprofile:
+                print('No tiene nada Perfil, entonces lo envio a crear uno')
                 return redirect('edit_profile')
+            else:
+                print('si tiene, entonces ')"""
+            perfil = request.user.userprofile
+            if not perfil.img_perfil or not perfil.biografia:
+                if request.path not in [reverse('edit_profile'), reverse('logout')]:
+                    return redirect('edit_profile')
         response = self.get_response(request)
         return response
 
