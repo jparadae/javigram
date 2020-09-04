@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
 
 #Forms
-from users.forms import PerfilForms
+from users.forms import PerfilForm
 
 # Create your views here.
 def login_views(request):
@@ -61,20 +61,30 @@ def register_views(request):
 
 def edit_views(request):
     """vista para editar los perfiles de usuarios incompletos, utilizando los forms de django
-     
+     -Se instancia al perfil para ser editado 
     """
-    """if request.method == 'POST':
-        form = PerfilForms(request.POST)
+    perfil = request.user.userprofile
+
+    if request.method == 'POST':
+        form = PerfilForm(request.POST, request.FILES)
         if form.is_valid():
             print(form.cleaned_data)
-        else:
-            form = PerfilForm()    """
-
-    perfil = request.user.userprofile
+            datos_formulario = form.cleaned_data
+            perfil.website = datos_formulario['website']
+            perfil.biografia = datos_formulario['biografia']
+            perfil.telefono = datos_formulario['telefono']
+            perfil.img_perfil = datos_formulario['img_perfil']
+            perfil.save()
+            return redirect('edit_profile')
+    else:
+        form = PerfilForm()   
+       
+    
     return render(request, 'users/edit_profile.html', 
     context={
      'perfil': perfil,
      'user' : request.user,
+     'form' : form
     })
 
 @login_required

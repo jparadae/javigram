@@ -3,10 +3,58 @@
 {% block head_content %}
 <title>@{{ request.user.username}} | Editar Perfil</title>
 {% endblock %}
+{% load static %}
+{% block container %}<p><br>
+ <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-sm-12 col-md-5 col-lg-5 pt-2 pl-5 pr-5 pb-5" id="auth-container">
+               <form method="POST" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
+                   {% if form.errors %}
+                   {{ form.errors }}
 
-{% block container %}
-<p><br>
-    <div class="row"><p><br>
-     <h1>Bienvenido @{{ request.user.username}} </h1>
+                   {% endif %}
+
+                    {% csrf_token %}
+                   <div class="media">
+                   {% if perfil.img_perfil %}
+                     <img class="mr-3 rounded-circle" src="{{ perfil.img_perfil.url }}" style="width: 75px; height: 70px; margin: 0px;"/>
+                    {% else %}
+                    <img class="mr-3 rounded-circle" src="{% static 'img/default-profile.png' %}" style="width: 75px; height: 70px; margin: 0px;"/>
+                    {% endif %}
+                   <div class="media-body"><br><p>
+                     <b>@{{ request.user.username}} | {{ request.user.first_name }} {{ request.user.last_name }}</b>
+                    <div class="input-group">
+ 
+                   <div class="custom-file">
+                     <input type="file" class="custom-file-input" id="inputGroupFile01"aria-describedby="inputGroupFileAddon01"  lang="es" value="{{ perfil.img_perfil }}" src="{{ perfil.img_perfil }}" name="img_perfil">{{ perfil.img_perfil }}</input>
+                     <label class="custom-file-label" for="inputGroupFile01" value="{{ perfil.img_perfil }}"> </label>
+                     </div>
+                  </div>
+             </div><br>
+     </div><br>
+        
+     <div class="form-group">
+     <span>Web</span>
+      <input type="text" class="form-control" id="website" name="website" value="{{ perfil.website }}"><br>
+      <span>Biografía</span>
+       <textarea class="form-control" id="biografia" name="biografia" rows="3">{{ perfil.biografia }}</textarea><br>
+      <span>Teléfono</span>
+      <input type="text" class="form-control" id="telefono" name="telefono" value="{{ perfil.telefono }}"><br>
+     <center>
+       <button type="submit" class="btn btn-primary">Actualizar</button>
+     </center>      
+    </div>  
+    </form>
+               
+            </div>
+        </div>
     </div>
+
+
+    
+    </div>
+
+
+   
 {% endblock %}
+
