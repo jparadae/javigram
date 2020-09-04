@@ -15,6 +15,9 @@
                    {% endif %}
 
                     {% csrf_token %}
+
+                    {# Validación de Campos #}
+                    
                    <div class="media">
                    {% if perfil.img_perfil %}
                      <img class="mr-3 rounded-circle" src="{{ perfil.img_perfil.url }}" style="width: 75px; height: 70px; margin: 0px;"/>
@@ -26,8 +29,8 @@
                     <div class="input-group">
  
                    <div class="custom-file">
-                     <input type="file" class="custom-file-input" id="inputGroupFile01"aria-describedby="inputGroupFileAddon01"  lang="es" value="{{ perfil.img_perfil }}" src="{{ perfil.img_perfil }}" name="img_perfil">{{ perfil.img_perfil }}</input>
-                     <label class="custom-file-label" for="inputGroupFile01" value="{{ perfil.img_perfil }}"> </label>
+                     <input type="file" class="custom-file-input" id="inputGroupFile01"aria-describedby="inputGroupFileAddon01"  lang="es"  name="img_perfil">
+                     <label class="custom-file-label" for="inputGroupFile01"> </label>
                      </div>
                   </div>
              </div><br>
@@ -35,14 +38,28 @@
         
      <div class="form-group">
      <span>Web</span>
-      <input type="text" class="form-control" id="website" name="website" value="{{ perfil.website }}"><br>
+
+      <input type="text" 
+      class="form-control {% if form.website.erros %}is-invalid{% endif %}" 
+      id="website" 
+      name="website" 
+      value="{% if form.errors%}{{ form.website.value}} {% else %}  {{ perfil.website }}{% endif %}">
+      <span style="color:red">
+          {% for error in form.website.errors %}
+          {{ error }}
+          {% endfor %}
+      </span>
+      <br><br>
       <span>Biografía</span>
        <textarea class="form-control" id="biografia" name="biografia" rows="3">{{ perfil.biografia }}</textarea><br>
       <span>Teléfono</span>
       <input type="text" class="form-control" id="telefono" name="telefono" value="{{ perfil.telefono }}"><br>
      <center>
        <button type="submit" class="btn btn-primary">Actualizar</button>
-     </center>      
+     </center>  
+     {# Fin validación Campos Formulario  #}    
+  
+     
     </div>  
     </form>
                

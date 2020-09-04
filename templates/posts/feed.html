@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block container %}
-    <div class="row">
-        {% for post in posts %}
-        <div class="col-lg-4 offset-lg-4">
-            <div class="media">
+    <div class="row"><p></p><br>
+        {% for post in posts %}<p></p><br>
+        <div class="col-lg-4 offset-lg-4"><p></p><br>
+            <div class="media"><p></p><br>
                 <img class="mr-3 rounded-circle" src="{{ post.usuario.avatar }}" alt="{{ ost.usuario.nombre }}" style="width: 100px; height: 90px; margin: 0px;">
                 <div class="media-body"><br><p>
                     <h5 class="mt-0">{{ post.usuario.nombre }}</h5>
