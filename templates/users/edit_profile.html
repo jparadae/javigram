@@ -20,27 +20,37 @@
                     
                    <div class="media">
                    {% if perfil.img_perfil %}
-                     <img class="mr-3 rounded-circle" src="{{ perfil.img_perfil.url }}" style="width: 75px; height: 70px; margin: 0px;"/>
+                     <img 
+                     class="mr-3 rounded-circle {% if form.img_perfil.errors %}is-invalid{% endif %}" 
+                     src="{{ perfil.img_perfil.url }}" 
+                     style="width: 75px; height: 70px; margin: 0px;"
+                     value="{% if form.errors%}{{ form.img_perfil.value}} {% else %}  {{ perfil.img_perfil }}{% endif %}"/>
+                     
                     {% else %}
                     <img class="mr-3 rounded-circle" src="{% static 'img/default-profile.png' %}" style="width: 75px; height: 70px; margin: 0px;"/>
+                    
                     {% endif %}
                    <div class="media-body"><br><p>
                      <b>@{{ request.user.username}} | {{ request.user.first_name }} {{ request.user.last_name }}</b>
                     <div class="input-group">
- 
                    <div class="custom-file">
                      <input type="file" class="custom-file-input" id="inputGroupFile01"aria-describedby="inputGroupFileAddon01"  lang="es"  name="img_perfil">
                      <label class="custom-file-label" for="inputGroupFile01"> </label>
                      </div>
                   </div>
+                   <span style="color:red">
+                   {% for error in form.img_perfil.errors %}
+                   {{ error }}
+                   {% endfor %}
+                   </span>
              </div><br>
      </div><br>
         
      <div class="form-group">
+     {# Validación website form de User #}
      <span>Web</span>
-
       <input type="text" 
-      class="form-control {% if form.website.erros %}is-invalid{% endif %}" 
+      class="form-control {% if form.website.errors %}is-invalid{% endif %}" 
       id="website" 
       name="website" 
       value="{% if form.errors%}{{ form.website.value}} {% else %}  {{ perfil.website }}{% endif %}">
@@ -50,10 +60,33 @@
           {% endfor %}
       </span>
       <br><br>
+      {# validación de biografia de form user #}
       <span>Biografía</span>
-       <textarea class="form-control" id="biografia" name="biografia" rows="3">{{ perfil.biografia }}</textarea><br>
+       <textarea 
+       class="form-control  {% if form.biografia.errors %}is-invalid{% endif %}"
+       id="biografia" 
+       name="biografia"
+       value="{% if form.errors %}{{ form.biografia.value }} {% else %} {{ perfil.biografia }}{% endif %}" 
+       rows="3"> {{ perfil.biografia }}</textarea>
+       <span style="color:red">
+       {% for error in form.biografia.errors %}
+       {{ error }}
+       {% endfor %}
+       </span>
+       <br>
+      {# validación de telefono #}
       <span>Teléfono</span>
-      <input type="text" class="form-control" id="telefono" name="telefono" value="{{ perfil.telefono }}"><br>
+      <input type="text" 
+      class="form-control {% if form.telefono.errors %}is-invalid{% endif %}" 
+      id="telefono" 
+      name="telefono" 
+      value="{% if form.errors %}{{ form.telefono.value }}{% else %}{{ perfil.telefono }}{% endif %}">
+      <span style="color:red">
+      {% for error in form.telefono.errors %}
+       {{ error }}
+       {% endfor %}
+       </span>
+      <br>
      <center>
        <button type="submit" class="btn btn-primary">Actualizar</button>
      </center>  
