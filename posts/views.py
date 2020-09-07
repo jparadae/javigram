@@ -1,6 +1,12 @@
 #Utils from django
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+
+#Forms
+from posts.forms import PostForm
+
+#Models
+from posts.models import Posts
 
 #From Utils general
 from datetime import datetime
@@ -41,3 +47,28 @@ posts = [
 @login_required
 def list_posts(request):
     return render(request, 'posts/feed.html', {'posts': posts})
+
+@login_required
+def nuevo_post(request):
+    """Para crear un nuevo post en javigram"""
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            print(form.cleaned_data)
+            print('Hola')
+            form.save()
+            return redirect('feed')            
+        else:
+            form = PostForm()
+            print('no hace post')
+    return render(
+        request = request,
+        template_name = 'posts/nuevo_post.html',
+        context={
+           
+            'user': request.user,
+            'perfil' : request.user.userprofile,
+            }
+        )
+    
+    

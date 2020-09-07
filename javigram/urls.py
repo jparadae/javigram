@@ -17,13 +17,14 @@ urlpatterns = [
    path('saludo/<str:nombre>/<int:edad>/', local_views.saludo, name='saludos'),
 
    #path de posts
-   path('posts/', views_post.list_posts, name='feed'),
+   path('', views_post.list_posts, name='feed'),
+   path('posts/nuevo/', views_post.nuevo_post, name='nuevo_post'),
 
    #Paths de users
    path('users/login/', views_user.login_views, name='login'),
    path('users/logout/', views_user.logout_views, name='logout'),
    path('users/signup/', views_user.register_views, name='signup'),
-   path('users/edit/profile', views_user. edit_views, name='edit_profile'),
+   path('users/edit/profile', views_user.edit_views, name='editar_perfil'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

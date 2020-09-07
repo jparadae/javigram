@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+<title>@{{ request.user.username}} | Nuevo Posts</title>
+{% endblock %}
+{% load static %}
+{% block container %}<p><br>
+ <div class="container h-100"><br>
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-sm-12 col-md-5 col-lg-5 pt-2 pl-5 pr-5 pb-5" id="auth-container">
+                <form method="POST" action="{% url 'nuevo_post' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if form.errors %}
+                {{ form.errors }}
+
+                {% endif %}
+                   
+                     <div class="form-group">
+                        <b>@{{ request.user.username}}</b><p>
+                        <h3>Publica una nueva foto!</h3><br>
+                        {# Validación Campo titulo#}
+                        <input type="text" 
+                        class="form-control {% if form.titulo.errors %}is-invalid{% endif %}" 
+                        id="TituloPosts" 
+                        placeholder="Titulo nueva foto"
+                        name="titulo"
+                        value="{% if form.errors  %}{{ form.titulo.value }}{% else %}{{ titulo }}{% endif %}">
+                        <small class="form-text text-danger">
+                            {% for error in form.titulo.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        </small>
+                        
+                        <div class="custom-file">
+                            {# Validación imagen #}
+                            <input type="file" 
+                            class="custom-file-input  {% if form.img_posts.errors %}is-invalid{% endif %}" 
+                            id="customFile" 
+                            name="img_posts"
+                            value="{% if form.errors  %}{{ form.img_posts.value }}{% endif %}">
+                            <label class="custom-file-label" for="customFile">Elige una foto</label>
+                          </div>
+                      </div>
+
+                      <center>
+                        <button type="submit" class="btn btn-primary">Publicar</button>
+                      </center>  
+                 </form>            
+            </div>
+        </div>
+    </div>
+    
+    </div>   
+{% endblock %}

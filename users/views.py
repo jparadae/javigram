@@ -35,6 +35,8 @@ def login_views(request):
 
     return render(request, 'users/login.html') 
 
+
+
 def register_views(request):
     """Función que registra a un usuario en Javigram"""
     if request.method == 'POST':
@@ -57,8 +59,9 @@ def register_views(request):
         perfil_usr = UserProfile(usuario=user) 
         perfil_usr.save()
         return redirect('login')  
-    return render(request, 'users/signup.html')    
+    return render(request, 'users/signup.html')   
 
+@login_required
 def edit_views(request):
     """vista para editar los perfiles de usuarios incompletos, utilizando los forms de django
      -Se instancia al perfil para ser editado 
@@ -75,7 +78,7 @@ def edit_views(request):
             perfil.telefono = datos_formulario['telefono']
             perfil.img_perfil = datos_formulario['img_perfil']
             perfil.save()
-            return redirect('edit_profile')
+            return redirect('editar_perfil')
     else:
         form = PerfilForm()   
        

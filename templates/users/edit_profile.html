@@ -8,14 +8,12 @@
  <div class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-sm-12 col-md-5 col-lg-5 pt-2 pl-5 pr-5 pb-5" id="auth-container">
-               <form method="POST" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
+               <form method="POST" action="{% url 'editar_perfil' %}" enctype="multipart/form-data">
+                {% csrf_token %}
                    {% if form.errors %}
                    {{ form.errors }}
 
                    {% endif %}
-
-                    {% csrf_token %}
-
                     {# Validación de Campos #}
                     
                    <div class="media">
@@ -38,11 +36,11 @@
                      <label class="custom-file-label" for="inputGroupFile01"> </label>
                      </div>
                   </div>
-                   <span style="color:red">
+                   <small class="form-text text-danger">
                    {% for error in form.img_perfil.errors %}
                    {{ error }}
                    {% endfor %}
-                   </span>
+                   </small>
              </div><br>
      </div><br>
         
@@ -54,11 +52,11 @@
       id="website" 
       name="website" 
       value="{% if form.errors%}{{ form.website.value}} {% else %}  {{ perfil.website }}{% endif %}">
-      <span style="color:red">
+      <small class="form-text text-danger">
           {% for error in form.website.errors %}
           {{ error }}
           {% endfor %}
-      </span>
+      </small>
       <br><br>
       {# validación de biografia de form user #}
       <span>Biografía</span>
@@ -68,11 +66,11 @@
        name="biografia"
        value="{% if form.errors %}{{ form.biografia.value }} {% else %} {{ perfil.biografia }}{% endif %}" 
        rows="3"> {{ perfil.biografia }}</textarea>
-       <span style="color:red">
+       <small class="form-text text-danger">
        {% for error in form.biografia.errors %}
        {{ error }}
        {% endfor %}
-       </span>
+       </small>
        <br>
       {# validación de telefono #}
       <span>Teléfono</span>
@@ -81,11 +79,11 @@
       id="telefono" 
       name="telefono" 
       value="{% if form.errors %}{{ form.telefono.value }}{% else %}{{ perfil.telefono }}{% endif %}">
-      <span style="color:red">
+      <small class="form-text text-danger">
       {% for error in form.telefono.errors %}
        {{ error }}
        {% endfor %}
-       </span>
+      </small>
       <br>
      <center>
        <button type="submit" class="btn btn-primary">Actualizar</button>
