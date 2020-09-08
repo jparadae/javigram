@@ -9,5 +9,5 @@ from posts.models import Posts
 class PostForm(ModelForm):
     class Meta:
         model = Posts
-        fields = ('usuario','perfil','titulo', 'img_posts')
+        fields = ['usuario','perfil','titulo', 'img_posts']
 
