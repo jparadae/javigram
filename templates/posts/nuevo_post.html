@@ -10,8 +10,8 @@
             <div class="col-sm-12 col-md-5 col-lg-5 pt-2 pl-5 pr-5 pb-5" id="auth-container">
                 <form method="POST" action="{% url 'nuevo_post' %}" enctype="multipart/form-data">
                 {% csrf_token %}
-                {% if form.errors %}
-                {{ form.errors }}
+                {% if form_post.errors %}
+                {{ form_post.errors }}
 
                 {% endif %}
                    
@@ -20,13 +20,13 @@
                         <h3>Publica una nueva foto!</h3><br>
                         {# Validación Campo titulo#}
                         <input type="text" 
-                        class="form-control {% if form.titulo.errors %}is-invalid{% endif %}" 
+                        class="form-control {% if form_post.titulo.errors %}is-invalid{% endif %}" 
                         id="TituloPosts" 
                         placeholder="Titulo nueva foto"
                         name="titulo"
-                        value="{% if form.errors  %}{{ form.titulo.value }}{% else %}{{ titulo }}{% endif %}">
+                        value="{% if form_post.errors%}{{ form_post.titulo.value}} {% else %}  {{ posts.titulo }}{% endif %}">
                         <small class="form-text text-danger">
-                            {% for error in form.titulo.errors %}
+                            {% for error in form_post.titulo.errors %}
                             {{ error }}
                             {% endfor %}
                         </small>
@@ -34,14 +34,15 @@
                         <div class="custom-file">
                             {# Validación imagen #}
                             <input type="file" 
-                            class="custom-file-input  {% if form.img_posts.errors %}is-invalid{% endif %}" 
+                            class="custom-file-input {% if form_post.img_posts.errors %}is-invalid{% endif %}" 
                             id="customFile" 
                             name="img_posts"
-                            value="{% if form.errors  %}{{ form.img_posts.value }}{% endif %}">
+                            value="{% if form_post.errors%}{{ form_post.img_posts.value}} {% else %}  {{ posts.img_posts }}{% endif %}">
                             <label class="custom-file-label" for="customFile">Elige una foto</label>
+                           
                           </div>
                       </div>
-
+             
                       <center>
                         <button type="submit" class="btn btn-primary">Publicar</button>
                       </center>  

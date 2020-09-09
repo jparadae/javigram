@@ -51,27 +51,28 @@ def list_posts(request):
 @login_required
 def nuevo_post(request):
     """Para crear un nuevo post en javigram"""
-    form = "Data Dummy"
-    if request.method == 'POST':
-        #print(form.cleaned_data)
-        form = PostForm(request.POST, request.FILES)
-    elif request.method == 'GET':
-        print("form.cleaned_data")
-        if form.is_valid():
-            #print(form.cleaned_data)
-            print('Hola')
-            form.save()
-            return redirect('feed')            
+    form_post = "Data Dummy"
+   
+    if request.method == 'GET':
+        #print(request.user)
+        form_post = PostForm(request.POST, request.FILES)
+        if form_post.is_valid():
+            form_post.save()
+            return redirect('feed')
         else:
-            form = PostForm()
-            print('no hace post')
+            form_post = PostForm()
+    elif request.method == 'POST':
+        form_post = PostForm(request.POST, request.FILES)
+        #usuario = request.user
+        #print(usuario)
+
     return render(
         request = request,
         template_name = 'posts/nuevo_post.html',
         context={
-            'form': form,
-            'user': request.user,
+            'usuario': request.user,
             'perfil' : request.user.userprofile,
+            'form_post': form_post
             }
         )
     
