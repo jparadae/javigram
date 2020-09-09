@@ -53,18 +53,14 @@ def nuevo_post(request):
     """Para crear un nuevo post en javigram"""
     form_post = "Data Dummy"
    
-    if request.method == 'GET':
-        #print(request.user)
+    if request.method == 'POST':
         form_post = PostForm(request.POST, request.FILES)
         if form_post.is_valid():
+            print(form_post.cleaned_data)
             form_post.save()
             return redirect('feed')
         else:
             form_post = PostForm()
-    elif request.method == 'POST':
-        form_post = PostForm(request.POST, request.FILES)
-        #usuario = request.user
-        #print(usuario)
 
     return render(
         request = request,
