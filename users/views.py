@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
 
 #Forms
-from users.forms import PerfilForm
+from users.forms import PerfilForm, RegistroForm
 
 # Create your views here.
 def login_views(request):
