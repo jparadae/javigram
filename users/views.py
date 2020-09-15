@@ -5,12 +5,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-#Modelds
-from users.models import UserProfile
-from django.contrib.auth.models import User
-
-#Exception
-from django.db.utils import IntegrityError
 
 #Forms
 from users.forms import PerfilForm, RegistroForm
@@ -39,27 +33,20 @@ def login_views(request):
 
 def register_views(request):
     """Función que registra a un usuario en Javigram"""
+    #form = "Data dummy"
+    form = RegistroForm(request.POST or None)
     if request.method == 'POST':
-        username = request.POST['usuario']
-        password = request.POST['password']
-        password_confirmation = request.POST['confirma_password']
-        print(username, password, password_confirmation)
-        if password != password_confirmation:
-            return render(request,'users/signup.html', {'error':'Las constraseñas no coinciden'})
-        try:
-            user = User.objects.create_user(username=username, password=password)  
-        except IntegrityError: 
-            return render(request, 'users/signup.html', {'error': 'El nombre de usuario ya existe, intente otro por favor'})    
+        if form.is_valid:
+            form.save()
+            return redirect('login')
+        else:
+            form = RegistroForm()
 
-        user.nombre = request.POST['nombre']
-        user.apellido = request.POST['apellido']
-        user.email = request.POST['email']
-        user.save()
-
-        perfil_usr = UserProfile(usuario=user) 
-        perfil_usr.save()
-        return redirect('login')  
-    return render(request, 'users/signup.html')   
+    return render(
+    request = request,
+    template_name='users/signup.html', 
+    context={'form': form})   
+    
 
 @login_required
 def edit_views(request):

@@ -1,7 +1,7 @@
 {% extends "users/base.html" %}
 
 {% block head_content %}
-<title>Javigram sign in</title>
+<title>Ingresar | Crear cuenta Javigram</title>
 {% endblock%}
 
 {% block container %}
@@ -16,8 +16,8 @@
         {% csrf_token %}
      <div class="form-group">
       <input type="text" class="form-control" id="usuario" aria-describedby="usuarioHelp" placeholder="Usuario" name="username"><br>
-      <input type="password" class="form-control" id="password" aria-describedby="passwordoHelp" placeholder="Password" name="password"><br>
-      <label for="">No tienes cuenta </label><a href="{% url 'signup' %}"> Registrate</a>
+      <input type="password" class="form-control" id="password" aria-describedby="passwordoHelp" placeholder="Password" name="password">
+      <center><a href="{% url 'signup' %}">Crear Cuenta</a></center><br>
      <center>
        <button type="submit" class="btn btn-primary">Ingresar</button>
      
