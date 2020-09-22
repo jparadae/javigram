@@ -33,7 +33,6 @@ def login_views(request):
 
 def register_views(request):
     """Función que registra a un usuario en Javigram"""
-    #form = "Data dummy"
     form = RegistroForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid:
@@ -53,8 +52,11 @@ def edit_views(request):
     """vista para editar los perfiles de usuarios incompletos, utilizando los forms de django
      -Se instancia al perfil para ser editado 
     """
-    perfil = request.user.userprofile
-
+    try:
+        perfil = request.user.userprofile
+    except:
+        print("Ocurrio un error baby")
+        perfil = None
     if request.method == 'POST':
         form = PerfilForm(request.POST, request.FILES)
         if form.is_valid():
