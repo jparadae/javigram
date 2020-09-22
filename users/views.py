@@ -21,7 +21,7 @@ def login_views(request):
         print(username, password, request)
         if user:
             login(request, user)
-            return redirect('feed')
+            return redirect('posts:feed')
          # A backend authenticated the credentials
         else:
             return render(request, 'users/login.html', {'error': 'Credenciales de usuario invalidas'})
@@ -38,7 +38,7 @@ def register_views(request):
     if request.method == 'POST':
         if form.is_valid:
             form.save()
-            return redirect('login')
+            return redirect('users:login')
         else:
             form = RegistroForm()
 
@@ -65,7 +65,7 @@ def edit_views(request):
             perfil.telefono = datos_formulario['telefono']
             perfil.img_perfil = datos_formulario['img_perfil']
             perfil.save()
-            return redirect('editar_perfil')
+            return redirect('users:editar_perfil')
     else:
         form = PerfilForm()   
        

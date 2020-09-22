@@ -28,7 +28,7 @@ def nuevo_post(request):
         if form_post.is_valid():
             print(form_post.cleaned_data)
             form_post.save()
-            return redirect('feed')
+            return redirect('posts:feed')
         else:
             form_post = PostForm()
 

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+<title>@{{ request.user.username }} | Javigram</title>
+{% endblock %}
+
+{% block container %}
+
+    <div class="container mb-5" style="margin-top: 8em;">
+        <div class="row">
+            <div class="col-sm-4 d-flex justify-content-center">
+                <img src="{{ request.user.userprofile.img_perfil.url }}" alt="@{{ request.user.username}}" class="rounded-circle" width="150px" />
+            </div>
+            <div class="col-sm-8">
+                <h2 style="font-weight: 100;">
+                    {{ request.user.username }}
+                    {% if request.user == user %}
+                        <a
+                            href="{% url "users:editar_perfil" %}"
+                            class="ml-5 btn btn-sm btn-outline-info"
+                        >
+                            Editar perfil
+                        </a>
+                    {% else %}
+                        <a
+                            href=""
+                            class="ml-5 btn btn-sm btn-primary"
+                        >
+                            Follow
+                        </a>
+                    {% endif %}
+                </h2>
+         
+                <div class="row mt-4">
+                    <div class="col-sm-12">
+                        <p>{{ request.user.userprofile.biografia }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+{% endblock %}

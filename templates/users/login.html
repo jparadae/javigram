@@ -12,12 +12,12 @@
      </div>
     {% endif%}
 
-    <form method="POST" action="{% url "login" %}">
+    <form method="POST" action="{% url "users:login" %}">
         {% csrf_token %}
      <div class="form-group">
       <input type="text" class="form-control" id="usuario" aria-describedby="usuarioHelp" placeholder="Usuario" name="username"><br>
       <input type="password" class="form-control" id="password" aria-describedby="passwordoHelp" placeholder="Password" name="password">
-      <center><a href="{% url 'signup' %}">Crear Cuenta</a></center><br>
+      <center><a href="{% url 'users:signup' %}">Crear Cuenta</a></center><br>
      <center>
        <button type="submit" class="btn btn-primary">Ingresar</button>
      

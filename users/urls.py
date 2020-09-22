@@ -8,11 +8,9 @@ from users import views
 
 urlpatterns=[
 
-   #Detalle Perfil Usuario 
-   
    path(
-       route='<str:username>',
-       view=TemplateView.as_view(template_name='users/detalle'),
+       route='usuario/<str:username>/',
+       view=TemplateView.as_view(template_name='users/detalle.html'),
        name='detalle'),
 
    path(
@@ -21,9 +19,9 @@ urlpatterns=[
        name='login'),
 
    path(
-       route='users/logout/', 
+       route='users/salir/', 
        view=views.logout_views, 
-       name='logout'),
+       name='salir'),
 
    path(
        route= 'users/signup/', 
