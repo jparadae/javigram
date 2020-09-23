@@ -9,11 +9,11 @@
     <div class="container mb-5" style="margin-top: 8em;">
         <div class="row">
             <div class="col-sm-4 d-flex justify-content-center">
-                <img src="{{ request.user.userprofile.img_perfil.url }}" alt="@{{ request.user.username}}" class="rounded-circle" width="150px" />
+                <img src="{{ user.userprofile.img_perfil.url }}" alt="@{{ user.username}}" class="rounded-circle" width="150px" />
             </div>
             <div class="col-sm-8">
                 <h2 style="font-weight: 100;">
-                    {{ request.user.username }}
+                    {{ user.username }}
                     {% if request.user == user %}
                         <a
                             href="{% url "users:editar_perfil" %}"
@@ -30,7 +30,18 @@
                         </a>
                     {% endif %}
                 </h2>
-         
+                
+                  <div class="row mt-2" style="font-size: 1.2em">
+                    <div class="col-sm-4">
+                        <b>{{ request.user.userprofile.posts_count }}785</b> posts
+                    </div>
+                    <div class="col-sm-4">
+                        <b>{{ request.user.userprofile.followers }}1,401</b> followers
+                    </div>
+                    <div class="col-sm-4">
+                        <b>{{ request.user.userprofile.following }}491</b> following
+                    </div>
+                </div>
                 <div class="row mt-4">
                     <div class="col-sm-12">
                         <p>{{ request.user.userprofile.biografia }}</p>

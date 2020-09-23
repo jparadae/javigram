@@ -4,10 +4,20 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from django.views.generic import DetailView
 
 #Forms
 from users.forms import PerfilForm, RegistroForm
+from django.urls import reverse
+#model
+from django.contrib.auth.models import User
+
+class DetalleUsuario(DetailView):
+    queryset = User.objects.all()
+    slug_field = 'username'
+    slug_url_kwarg = 'usuario'
+    template_name = 'users/detalle.html'
+
 
 # Create your views here.
 def login_views(request):
@@ -37,7 +47,7 @@ def register_views(request):
     if request.method == 'POST':
         if form.is_valid:
             form.save()
-            return redirect('users:login')
+            return redirect('login')
         else:
             form = RegistroForm()
 
@@ -67,7 +77,8 @@ def edit_views(request):
             perfil.telefono = datos_formulario['telefono']
             perfil.img_perfil = datos_formulario['img_perfil']
             perfil.save()
-            return redirect('users:editar_perfil')
+            url = reverse('users:detalle', kwargs={'usuario': request.user.username})
+            return redirect(url)
     else:
         form = PerfilForm()   
        

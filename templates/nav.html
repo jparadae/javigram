@@ -10,7 +10,7 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item">
-                    <a href="{% url 'users:editar_perfil' %}">
+                    <a href="{% url 'users:detalle' request.user.username %}">
                         {% if request.user.userprofile.img_perfil %}
                         <img src="{{ request.user.userprofile.img_perfil.url }}" style="width: 55px; height: 50px;" class="d-inline-block align-top rounded-circle"/>
                         {% else %}

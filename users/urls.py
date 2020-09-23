@@ -9,8 +9,8 @@ from users import views
 urlpatterns=[
 
    path(
-       route='usuario/<str:username>/',
-       view=TemplateView.as_view(template_name='users/detalle.html'),
+       route='usuario/<str:usuario>/',
+       view=views.DetalleUsuario.as_view(),
        name='detalle'),
 
    path(
