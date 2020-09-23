@@ -53,4 +53,16 @@
 
     <hr>
 
+    <div class="container" id="user-posts">
+        <div class="row mt-3">
+            {% for post in posts %}
+            <div class="col-sm-4 pt-5 pb-5 pr-5 pl-5 d-flex justify-content-center align-items-center">
+                <a href="" class="border">
+                    <img src="{{ post.img_posts.url }}" alt="{{ post.titulo }}" class="img-fluid"/>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
 {% endblock %}

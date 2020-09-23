@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 #Forms
 from users.forms import PerfilForm, RegistroForm
@@ -12,11 +13,22 @@ from django.urls import reverse
 #model
 from django.contrib.auth.models import User
 
-class DetalleUsuario(DetailView):
+#Posts
+from posts.models import Posts
+
+class DetalleUsuario(LoginRequiredMixin, DetailView):
     queryset = User.objects.all()
     slug_field = 'username'
     slug_url_kwarg = 'usuario'
     template_name = 'users/detalle.html'
+    context_object_name='user'
+
+    """Trayendo los posts del usuario"""
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        usuario = self.get_object()
+        context['posts'] = Posts.objects.filter(usuario=usuario).order_by('created_at')
+        return context
 
 
 # Create your views here.
