@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
+from django.views.generic.list import ListView
 
 #Forms
 from posts.forms import PostForm
@@ -18,10 +18,13 @@ from datetime import datetime
 class PostsFeedView(LoginRequiredMixin, ListView):
     """Retorna todos los posts publicados"""
     template_name = 'posts/feed.html'
-    model = Posts.objects.all()
+    model = Posts
     ordering = ('created_at')
     paginate_by = 2
     context_object_name = 'posts'
+
+
+    
 
 
 

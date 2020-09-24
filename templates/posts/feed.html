@@ -9,7 +9,7 @@
         {% for post in posts %}<p></p><br>
         <div class="col-lg-4 offset-lg-4"><p></p><br>
             <div class="media"><p></p><br>
-                <a href="{% url 'userus:detalle' request.user.username  %}">
+                <a href="{% url 'users:detalle' request.user.username  %}">
                 <img class="mr-3 rounded-circle" src="{{ post.perfil.img_perfil.url }}" alt="{{ post.usuario.username }}" style="width: 90px; height: 80px;">
                 </a>
                 <div class="media-body"><br>
