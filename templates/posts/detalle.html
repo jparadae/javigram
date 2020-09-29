@@ -5,7 +5,9 @@
 {% endblock %}
 {% load static %}
 {% block container %}<p><br>
- <div class="container h-100"><br>
-    hi
- </div>
+   <div class="container">
+      <div class="row">
+          {% include "posts/post_usuario.html" %}
+      </div>
+  </div>
  {% endblock %}
