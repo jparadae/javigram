@@ -3,12 +3,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
+from django.views.generic import DetailView
 
 #Forms
 from posts.forms import PostForm
 
 #Models
 from posts.models import Posts
+from users.models import User
 
 #From Utils general
 from datetime import datetime
@@ -24,6 +26,11 @@ class PostsFeedView(LoginRequiredMixin, ListView):
     context_object_name = 'posts'
 
 
+class DetallePost(LoginRequiredMixin, DetailView):
+    queryset = Posts.objects.all()
+    template_name = 'posts/detalle.html'
+    context_object_name='posts'
+
     
 
 
@@ -38,8 +45,8 @@ def list_posts(request):
 @login_required
 def nuevo_post(request):
     """Para crear un nuevo post en javigram"""
-    form_post = "Data Dummy"
-   
+    form_post = PostForm(request.POST or None)
+
     if request.method == 'POST':
         form_post = PostForm(request.POST, request.FILES)
         if form_post.is_valid():

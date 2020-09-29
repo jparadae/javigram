@@ -16,7 +16,9 @@
                     <h6 class="mt-0">{{ post.usuario.first_name }} {{ post.usuario.last_name }}</h6>
                 </div>
             </div>
+            {% if  post.img_posts %}
             <img class="img-fluid mt-3 border rounded" src="{{ post.img_posts.url }}" alt="{{ post.titulo }}">
+            {% endif %}
             <span class="material-icons">favorite_border</span>
             <span class="material-icons">chat_bubble_outline</span>
         <span class="material-icons">near_me</span>   &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -25,5 +27,6 @@
            
         </div>
         {% endfor %}
+        {% include "paginador.html" %}
     </div>
 {% endblock %}

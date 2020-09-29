@@ -16,4 +16,11 @@ urlpatterns = [
        route='posts/nuevo/', 
        view=views.nuevo_post, 
        name='nuevo_post'),
+
+   path(
+       route='posts/detalle/<int:pk>/',
+       view=views.DetallePost.as_view(),
+       name='detalle'),   
+
+
 ]
