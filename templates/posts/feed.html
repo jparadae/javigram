@@ -7,25 +7,7 @@
 {% block container %}
     <div class="row"><p></p><br>
         {% for post in posts %}<p></p><br>
-        <div class="col-lg-4 offset-lg-4"><p></p><br>
-            <div class="media"><p></p><br>
-                <a href="{% url 'users:detalle' request.user.username  %}">
-                <img class="mr-3 rounded-circle" src="{{ post.perfil.img_perfil.url }}" alt="{{ post.usuario.username }}" style="width: 90px; height: 80px;">
-                </a>
-                <div class="media-body"><br>
-                    <h6 class="mt-0">{{ post.usuario.first_name }} {{ post.usuario.last_name }}</h6>
-                </div>
-            </div>
-            {% if  post.img_posts %}
-            <img class="img-fluid mt-3 border rounded" src="{{ post.img_posts.url }}" alt="{{ post.titulo }}">
-            {% endif %}
-            <span class="material-icons">favorite_border</span>
-            <span class="material-icons">chat_bubble_outline</span>
-        <span class="material-icons">near_me</span>   &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-         <span class="material-icons" align="right">turned_in_not</span>
-            <p><b class="ml-1 mt-1">{{ post.titulo }}</b>  &nbsp;{{ post.created_at }}
-           
-        </div>
+         {% include "posts/post_usuario.html" %}
         {% endfor %}
         {% include "paginador.html" %}
     </div>

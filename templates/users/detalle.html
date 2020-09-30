@@ -57,7 +57,7 @@
         <div class="row mt-3">
             {% for post in posts %}
             <div class="col-sm-4 pt-5 pb-5 pr-5 pl-5 d-flex justify-content-center align-items-center">
-                <a href="{% url 'posts:detalle'  %}" class="border">
+                <a href="{% url 'posts:detalle' request.user.userprofile.id %}" class="border">
                     <img src="{{ post.img_posts.url }}" alt="{{ post.titulo }}" class="img-fluid"/>
                 </a>
             </div>

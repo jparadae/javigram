@@ -18,7 +18,7 @@ urlpatterns = [
        name='nuevo_post'),
 
    path(
-       route='posts/detalle/<int:pk>/',
+       route='posts/<int:pk>/',
        view=views.DetallePost.as_view(),
        name='detalle'),   
 
