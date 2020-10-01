@@ -1,9 +1,10 @@
 #Utils from django
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.list import ListView
-from django.views.generic import DetailView
+from django.views.generic import ListView, DetailView, CreateView
+
 
 #Forms
 from posts.forms import PostForm
@@ -22,14 +23,26 @@ class PostsFeedView(LoginRequiredMixin, ListView):
     template_name = 'posts/feed.html'
     model = Posts
     ordering = ('created_at')
-    paginate_by = 10
+    paginate_by = 30
     context_object_name = 'posts'
 
 
-class DetallePost(LoginRequiredMixin, DetailView):
+class DetallePostView(LoginRequiredMixin, DetailView):
     queryset = Posts.objects.all()
     template_name = 'posts/detalle.html'
-    context_object_name='posts'
+    context_object_name='post'
+
+class CreatePostView(LoginRequiredMixin, CreateView):
+    template_name = 'posts/nuevo_post.html'
+    form_class = PostForm
+    success_url = reverse_lazy('posts:feed')
+
+    def get_context_data(self, **kwargs):
+        """Añade el usuario y el perfil al context"""
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user
+        context['perfil'] = self.request.user.userprofile
+        return context
 
     
 
@@ -41,10 +54,12 @@ def list_posts(request):
     posts = Posts.objects.all().order_by('created_at')
     
     return render(request, 'posts/feed.html', {'posts': posts})"""
+"""Para crear un nuevo post en javigram"""
 
-@login_required
+ 
+"""@login_required
 def nuevo_post(request):
-    """Para crear un nuevo post en javigram"""
+   
     form_post = PostForm(request.POST or None)
 
     if request.method == 'POST':
@@ -64,6 +79,6 @@ def nuevo_post(request):
             'perfil' : request.user.userprofile,
             'form_post': form_post
             }
-        )
+        )"""
     
     

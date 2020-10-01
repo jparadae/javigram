@@ -14,13 +14,13 @@ urlpatterns = [
 
    path(
        route='posts/nuevo/', 
-       view=views.nuevo_post, 
+       view=views.CreatePostView.as_view(), 
        name='nuevo_post'),
 
    path(
        route='posts/<int:pk>/',
-       view=views.DetallePost.as_view(),
+       view=views.DetallePostView.as_view(),
        name='detalle'),   
 
-
+ 
 ]

@@ -1,26 +1,22 @@
-{% load static %}
+
+
 <div class="col-sm-12 col-md-8 offset-md-2 mt-5 p-0 post-container">
     <div class="media pt-3 pl-3 pb-1">
         <a href="{% url 'users:detalle' request.user.username  %}">
-            <img class="mr-3 rounded-circle" height="35" src="{{ post.perfil.img_perfil.url }}"
+            <img class="mr-3 rounded-circle" height="50" width="55" src="{{ post.perfil.img_perfil.url }}"
                 alt="{{ post.usuario.username }}">
         </a>
         <div class="media-body">
             <p style="margin-top: 5px;">{{ post.usuario.username  }}</p>
         </div>
     </div>
+  
 
-
-    <a href="{% url 'users:detalle' request.user.username %}">
-        {% if request.user.userprofile.img_perfil %}
-        <img src="{{ request.user.userprofile.img_perfil.url }}" style="width: 55px; height: 50px;" class="d-inline-block align-top rounded-circle"/>
-        {% else %}
-        <img src="{% static 'img/default-profile.png' %}" height="35" class="d-inline-block align-top rounded-circle"/>
-        {% endif %}
-    </a>
-
-
-    <img style="width: 100%;" src="{% static  post.img_post.url %}" alt="{{ post.titulo }}">
+    {% if  post.img_posts %}
+    <img style="width: 100%;" src="{{ post.img_posts.url }}" alt="{{ post.titulo }}">
+    {% else %}
+    <img style="width: 100%;" src="{{ post.perfil.img_perfil.url }}" alt="{{ post.titulo }}">
+    {% endif %}
 
     <p class="mt-1 ml-2">
         <a href="" style="color: #000; font-size: 20px;">
