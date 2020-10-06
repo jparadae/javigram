@@ -10,12 +10,12 @@ urlpatterns=[
 
    path(
        route='users/login/', 
-       view=views.login_views, 
+       view=views.LoginView.as_view(), 
        name='login'),
 
    path(
        route='users/salir/', 
-       view=views.logout_views, 
+       view=views.LogoutView.as_view(), 
        name='salir'),
 
    path(
