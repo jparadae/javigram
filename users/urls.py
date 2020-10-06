@@ -9,11 +9,6 @@ from users import views
 urlpatterns=[
 
    path(
-       route='usuario/<str:usuario>/',
-       view=views.DetalleUsuario.as_view(),
-       name='detalle'),
-
-   path(
        route='users/login/', 
        view=views.login_views, 
        name='login'),
@@ -25,12 +20,19 @@ urlpatterns=[
 
    path(
        route= 'users/signup/', 
-       view=views.register_views, 
+       view=views.RegistroViews.as_view(), 
        name='signup'),
 
    path(
        route='users/edit/profile',
-       view=views.edit_views, 
+       view=views.EditarPerfil.as_view(), 
        name='editar_perfil'),
+
+    #Django resuelve por orden las urls
+    
+    path(
+       route='usuario/<str:usuario>/',
+       view=views.DetalleUsuario.as_view(),
+       name='detalle'),   
   
 ]

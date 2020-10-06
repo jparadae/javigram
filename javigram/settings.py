@@ -89,7 +89,7 @@ DATABASES = {
         'NAME': 'javigram',
         'USER': 'root',
         'PASSWORD': 'jparada1',
-        'HOST': '172.17.0.2',
+        'HOST': '172.17.0.3',
         'PORT': '3306',
     }
 }

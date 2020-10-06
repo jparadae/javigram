@@ -40,7 +40,7 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         """Añade el usuario y el perfil al context"""
         context = super().get_context_data(**kwargs)
-        context['user'] = self.request.user
+        context['usuario'] = self.request.user
         context['perfil'] = self.request.user.userprofile
         return context
 
