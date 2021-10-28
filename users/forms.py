@@ -7,21 +7,23 @@ from django import forms
 from django.contrib.auth.models import User
 from users.models import UserProfile
 
+
+"""Aqui ira el formulario de Registro de usuario"""
 class RegistroForm(forms.Form):
-    """Form de Registro de usuarios en Javigram"""
+    """Form sign up user"""
     username = forms.CharField(max_length= 50, min_length=4)
     password = forms.CharField(max_length=10, widget=forms.PasswordInput())
     password_confirmation = forms.CharField(max_length=10, widget=forms.PasswordInput())
-    first_name = forms.CharField(max_length=50, min_length=5)
-    last_name = forms.CharField(max_length=50, min_length=5)
+    nombre = forms.CharField(max_length=50, min_length=5)
+    apellido = forms.CharField(max_length=50, min_length=5)
     email = forms.CharField(max_length=20, min_length=5, widget=forms.EmailInput())
      
     def clean_usuario(self):
-        """Funcion que valida si un usuario existe en Javigram"""
+        """Funcion que valida si un usuario existe"""
         username = self.cleaned_data['username']
         usuarioExiste = User.objects.filter(username=username).exist()
         if usuarioExiste:
-            raise ValidationError("El usuario ya existe en Javigram!") 
+            raise ValidationError("El usuario ya existe!") 
             
         return username
 

@@ -1,13 +1,19 @@
-# Javigram (Curso de platzi)
+# Project Base 
 
+Project base custom djangoAdmin with mysql
 
-Proyecto realizado con django que publica diferentes posts por usuario
+Instructions.
 
+1. pip install django
+2. sudo apt-get install default-libmysqlclient-dev
+3. pip install mysqlclient
+4. pip install pillow
+5. python manage.py runserver
 
 
 
 ## Autor ✒️
 
- **Javiera Parada** 
+ **Javiera Parada Epul ** 
 
 
